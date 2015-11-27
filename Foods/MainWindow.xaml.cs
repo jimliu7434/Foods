@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Foods.Pages;
 
 
 namespace Foods
@@ -20,16 +21,16 @@ namespace Foods
 	/// MainWindow.xaml 的互動邏輯
 	/// </summary>
 	public partial class MainWindow : Window
-	{
-		MainWindowViewModel ViewModel = new MainWindowViewModel();
+    {
+		
 		
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			ViewModel.Init();
+		    frame.Content = new MainPage();
 		}
 
 
-	}
+    }
 }

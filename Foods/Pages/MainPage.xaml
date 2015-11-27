@@ -1,14 +1,83 @@
-﻿<Page x:Class="Foods.Pages.MainPage"
+﻿<local:PageBase 
+      x:Class="Foods.Pages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
       xmlns:local="clr-namespace:Foods.Pages"
+      xmlns:viewModel="clr-namespace:Foods.PageViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="MainPage">
+      Title="MainPage"
+      >
 
+    <Page.Resources>
+        <SolidColorBrush x:Key="BorderBrush" Color="#666666" />
+        <SolidColorBrush x:Key="BackGround" Color="Transparent" />
+        <SolidColorBrush x:Key="FontColor" Color="Wheat" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource FontColor}"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+        </Style>
+        <viewModel:MainPageViewModel x:Key="mainPageViewModel"/>
+    </Page.Resources>
     <Grid>
-        
+        <Border >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="取得資料中...."/>
+                <ListView  Grid.Row="1"
+                          SelectionMode="Single"
+						  ItemsSource="{Binding HeaderList,Mode=OneWay}"
+						  SelectedItem="{Binding SelectedHeader, Mode=TwoWay}"
+						  >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <ei:CallMethodAction MethodName="ListView_SelectionChanged"
+                                                 TargetObject="{StaticResource mainPageViewModel}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border >
+                                <TextBlock Text="{Binding Content}" />
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView  Grid.Row="2"
+                    ItemsSource="{Binding ContentList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Key}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Value}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Border>
     </Grid>
-</Page>
+</local:PageBase>

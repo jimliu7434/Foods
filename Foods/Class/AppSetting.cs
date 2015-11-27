@@ -11,5 +11,6 @@ namespace Foods.Class
 		public string Key { get; set; }
 		public string DownloadUrl { get; set; }
 		public string DownloadLocalDir { get; set; }
+        public string TempFileName { get; set; }
     }
 }

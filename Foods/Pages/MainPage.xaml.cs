@@ -12,17 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Foods.PageViewModels;
 
 namespace Foods.Pages
 {
 	/// <summary>
 	/// MainPage.xaml 的互動邏輯
 	/// </summary>
-	public partial class MainPage : Page
+	public partial class MainPage : PageBase
 	{
-		public MainPage()
+        MainPageViewModel ViewModel;
+        public MainPage()
 		{
 			InitializeComponent();
-		}
-	}
+            this.DataContextChanged += MainPage_DataContextChanged; ;
+        }
+
+        private void MainPage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ViewModel = DataContext as MainPageViewModel;
+        }
+
+    }
 }
