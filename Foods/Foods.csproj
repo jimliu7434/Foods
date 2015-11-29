@@ -92,12 +92,23 @@
     <Compile Include="Class\ExcelTab.cs" />
     <Compile Include="Class\JsonUtility.cs" />
     <Compile Include="Class\PathUtility.cs" />
-    <Compile Include="Class\供應商.cs" />
-    <Compile Include="Class\菜色.cs" />
-    <Compile Include="Class\食材.cs" />
+    <Compile Include="Class\Supplier.cs" />
+    <Compile Include="Class\Dish.cs" />
+    <Compile Include="Class\Material.cs" />
     <Compile Include="Enum\WorkSheetEnum.cs" />
+    <Compile Include="Pages\DishSubPage.xaml.cs">
+      <DependentUpon>DishSubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MaterialSubPage.xaml.cs">
+      <DependentUpon>MaterialSubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SupplierSubPage.xaml.cs">
+      <DependentUpon>SupplierSubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageViewModels\DishSubPageViewModel.cs" />
     <Compile Include="PageViewModels\MainPageViewModel.cs" />
     <Compile Include="Pages\PageBase.cs" />
+    <Compile Include="PageViewModels\MaterialSubPageViewModel.cs" />
     <Compile Include="PageViewModels\PageViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -111,7 +122,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\DishSubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MaterialSubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SupplierSubPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,6 +143,7 @@
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageViewModels\SupplierSubPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -36,11 +36,11 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="取得資料中...."/>
+                <TextBlock Grid.Row="0" Text="取得資料中...." Visibility="{Binding TxtDownloadingVisibility,Mode=OneWay, TargetNullValue=true}"/>
                 <ListView  Grid.Row="1"
                           SelectionMode="Single"
 						  ItemsSource="{Binding HeaderList,Mode=OneWay}"
-						  SelectedItem="{Binding SelectedHeader, Mode=TwoWay}"
+						  SelectedItem="{Binding SelectedHeader, Mode=OneWay}"
 						  >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
@@ -57,26 +57,32 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border >
-                                <TextBlock Text="{Binding Content}" />
+                                <TextBlock Text="{Binding Content, Mode=OneWay}" />
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <ListView  Grid.Row="2"
-                    ItemsSource="{Binding ContentList}">
+                <!--<ListView  Grid.Row="2"
+							ItemsSource="{Binding ContentList, Mode=OneWay}"
+						   SelectionMode="Extended">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding Key}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Value}"/>
+                                <TextBlock Grid.Column="0" Text="{Binding Key, Mode=OneWay}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Name, Mode=OneWay}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Catagory, Mode=OneWay}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
+                <Frame Grid.Row="2" Content="{Binding FrameContent,Mode=OneWay}" >
+					
+				</Frame>
             </Grid>
         </Border>
     </Grid>

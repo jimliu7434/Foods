@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using Foods.PageViewModels;
 
 namespace Foods.Pages
@@ -26,7 +27,6 @@ namespace Foods.Pages
         private void MainPage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             _viewModel = DataContext as PageViewModelBase;
-
         }
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace Foods.Pages
         /// </summary>
         public virtual void SetDataContext()
         {
-            Type viewType = this.GetType();
+            var viewType = this.GetType();
 
-            string viewModelName = viewType.AssemblyQualifiedName.Replace("Page", "PageViewModel");
-            Type viewModelType = Type.GetType(viewModelName);
+            var viewModelName = viewType.AssemblyQualifiedName.Replace("Page", "PageViewModel");
+            var viewModelType = Type.GetType(viewModelName);
 
             DataContext = Activator.CreateInstance(viewModelType);
         }

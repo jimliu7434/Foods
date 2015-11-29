@@ -9,31 +9,94 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Foods.Class;
+using Foods.Enum;
+using Foods.Pages;
 
 namespace Foods.PageViewModels
 {
     public class MainPageViewModel :PageViewModelBase
     {
 
-        public ExcelTab SelectedHeader { get; set; }
+	    private bool _txtDownloadingIsVisible = true;
+	    public bool TxtDownloadingIsVisibile 
+	    {
+			get { return _txtDownloadingIsVisible; }
+		    set
+		    {
+			    _txtDownloadingIsVisible = value;
+			    this.OnPropertyChanged("TxtDownloadingIsVisibile");
+				this.OnPropertyChanged("TxtDownloadingVisibility");
+			}
+		    
+	    }
 
-        public ObservableCollection<ExcelTab> HeaderList { get; set; }
-        public ObservableCollection<ExcelCellPair> ContentList { get; set; }
+		public string TxtDownloadingVisibility => TxtDownloadingIsVisibile ? "Visible" : "Collapsed";
 
-        private AppSetting RootSetting => AppSettingManager.RootSetting;
+	    private ExcelTab _selectedHeader;
+
+	    public ExcelTab SelectedHeader
+	    {
+			get { return _selectedHeader; }
+		    set
+		    {
+			    _selectedHeader = value;
+			    this.OnPropertyChanged("SelectedHeader");
+		    }
+	    }
+
+	    private List<ExcelTab> _headerList;
+        public List<ExcelTab> HeaderList
+	    {
+			get { return _headerList; }
+	        set
+	        {
+		        _headerList = value;
+		        this.OnPropertyChanged("HeaderList");
+	        }
+		}
+
+	  //  private List<ExcelCellPair> _contentList;
+
+	  //  public List<ExcelCellPair> ContentList
+	  //  {
+			//get { return _contentList; }
+		 //   set
+		 //   {
+			//    _contentList = value;
+			//    this.OnPropertyChanged("ContentList");
+		 //   }
+	  //  }
+
+	    private Page _frameContent;
+
+	    public Page FrameContent
+	    {
+		    get { return _frameContent; }
+		    set
+		    {
+			    _frameContent = value;
+			    this.OnPropertyChanged("FrameContent");
+		    }
+	    }
+
+		private AppSetting RootSetting => AppSettingManager.RootSetting;
 
         public MainPageViewModel()
         {
             var obj = DumpExcelDataBase.ExcelFullContent;
             DumpExcelDataBase.ExcelFileDownloadCompleted += DumpExcelDataBase_ExcelFileDownloadCompleted;
-
+	        TxtDownloadingIsVisibile = true;
         }
 
         private void DumpExcelDataBase_ExcelFileDownloadCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if(!e.Cancelled)
-                Init();
+	        if (!e.Cancelled)
+	        {
+		        Init();
+		        TxtDownloadingIsVisibile = false;
+			}
         }
 
         private void Init()
@@ -46,7 +109,7 @@ namespace Foods.PageViewModels
         private void SelectDefaultTab()
         {
             SelectedHeader = HeaderList.FirstOrDefault();
-        }
+		}
 
 
 
@@ -54,33 +117,46 @@ namespace Foods.PageViewModels
         {
             if(HeaderList != null && HeaderList.Count > 0) return;
 
-            DumpExcelDataBase.DumpHeader();
+            //DumpExcelDataBase.DumpHeader();
 
-            if (DumpExcelDataBase.TabList != null &&
-                DumpExcelDataBase.TabList.Count > 0)
+            if (DumpExcelDataBase.HeaderList != null &&
+                DumpExcelDataBase.HeaderList.Count > 0)
             {
 
 
-                HeaderList = new ObservableCollection<ExcelTab>(DumpExcelDataBase.TabList);
+                HeaderList = DumpExcelDataBase.HeaderList;
             }
             else
             {
-                HeaderList = new ObservableCollection<ExcelTab>();
+                HeaderList = new List<ExcelTab>();
             }
-            this.OnPropertyChanged("HeaderList");
+
+	        
         }
 
         public void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Prepare Second List
-            var list = new List<ExcelCellPair>();
+	        var item = e.AddedItems[0] as ExcelTab;
+			if(item == null) return;
+	        SelectedHeader = item;
 
-            if (DumpExcelDataBase.DumpContent(SelectedHeader, out list))
-            {
-                ContentList = new ObservableCollection<ExcelCellPair>(list);
-                this.OnPropertyChanged("ContentList");
-            }
+	        WorkSheetEnum en;
+	        if (WorkSheetEnum.TryParse(SelectedHeader.Content, out en))
+	        {
+		        switch (en)
+		        {
+				    case WorkSheetEnum.菜色編號對照:
+						FrameContent = new DishSubPage();
+						break;
+					case WorkSheetEnum.供應商編號對照:
+						FrameContent = new SupplierSubPage();
+						break;    
+					case WorkSheetEnum.食材編號對照:
+						FrameContent = new MaterialSubPage();
+						break;
 
+		        }
+	        }
         }
     }
 }

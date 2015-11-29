@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Foods.Class
 {
-    public class 菜色
+    public class Dish
     {
-        public string 菜色編號 { get; set; }
+        public string C_DishKey { get; set; }
 
-        public string 菜色名稱 { get; set; }
+        public string C_DishName { get; set; }
     }
 }

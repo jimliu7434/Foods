@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Foods.Class
 {
-    public class 供應商
+    public class Supplier
     {
-        public string 供應商統編 { get; set; }
+        public string C_SupplierKey { get; set; }
 
-        public string 供應商名稱 { get; set; }
+        public string C_SupplierName { get; set; }
     }
 }
