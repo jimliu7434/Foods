@@ -79,6 +79,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFTextBoxAutoComplete, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFTextBoxAutoComplete.1.0.2\lib\net40\WPFTextBoxAutoComplete.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -87,6 +91,7 @@
     </ApplicationDefinition>
     <Compile Include="Class\AppSetting.cs" />
     <Compile Include="Class\AppSettingManager.cs" />
+    <Compile Include="Class\AutoCompleteItem.cs" />
     <Compile Include="Class\DumpExcelDataBase.cs" />
     <Compile Include="Class\ExcelCellPair.cs" />
     <Compile Include="Class\ExcelTab.cs" />
@@ -95,6 +100,12 @@
     <Compile Include="Class\Supplier.cs" />
     <Compile Include="Class\Dish.cs" />
     <Compile Include="Class\Material.cs" />
+    <Compile Include="Control\LoadingAnimation\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LoadingAnimation\LoadingAnimation.xaml.cs">
+      <DependentUpon>LoadingAnimation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enum\WorkSheetEnum.cs" />
     <Compile Include="Pages\DishSubPage.xaml.cs">
       <DependentUpon>DishSubPage.xaml</DependentUpon>
@@ -110,6 +121,14 @@
     <Compile Include="Pages\PageBase.cs" />
     <Compile Include="PageViewModels\MaterialSubPageViewModel.cs" />
     <Compile Include="PageViewModels\PageViewModelBase.cs" />
+    <Page Include="Control\LoadingAnimation\Block.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\LoadingAnimation\LoadingAnimation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

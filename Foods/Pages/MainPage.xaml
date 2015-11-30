@@ -8,6 +8,7 @@
       xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
       xmlns:local="clr-namespace:Foods.Pages"
       xmlns:viewModel="clr-namespace:Foods.PageViewModels"
+      xmlns:control="clr-namespace:Foods.Control"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainPage"
@@ -34,10 +35,20 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="取得資料中...." Visibility="{Binding TxtDownloadingVisibility,Mode=OneWay, TargetNullValue=true}"/>
-                <ListView  Grid.Row="1"
+                <Grid Grid.Row="0" Grid.RowSpan="2"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Height="300"
+                      Width="300"
+                      >
+                    <!--<TextBlock Grid.Row="0" Text="取得資料中...." Visibility="{Binding TxtDownloadingVisibility,Mode=OneWay, TargetNullValue=true}"/>-->
+                    <control:LoadingAnimation Visibility="{Binding TxtDownloadingVisibility,Mode=OneWay}"/>
+                </Grid>
+                <ListView  Grid.Row="0"
+                           VerticalAlignment="Center"
+                           ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           SelectionMode="Single"
 						  ItemsSource="{Binding HeaderList,Mode=OneWay}"
 						  SelectedItem="{Binding SelectedHeader, Mode=OneWay}"
@@ -54,6 +65,12 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         </Style>
                     </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border >
@@ -80,9 +97,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>-->
-                <Frame Grid.Row="2" Content="{Binding FrameContent,Mode=OneWay}" >
-					
-				</Frame>
+                <Grid Grid.Row="1" Visibility="{Binding DishGridVisibility}">
+                </Grid>
+                <!--<Grid Grid.Row="1" Visibility="{Binding SupplierGridVisibility}"></Grid>
+                <Grid Grid.Row="1" Visibility="{Binding MaterialGridVisibility}"></Grid>-->
             </Grid>
         </Border>
     </Grid>

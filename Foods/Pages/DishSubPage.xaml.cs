@@ -33,5 +33,5 @@ namespace Foods.Pages
 			ViewModel = DataContext as DishSubPageViewModel;
 
 		}
-	}
+    }
 }

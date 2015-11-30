@@ -18,8 +18,9 @@ namespace Foods.PageViewModels
 {
     public class MainPageViewModel :PageViewModelBase
     {
+        public string DishGridVisibility => "Visible";
 
-	    private bool _txtDownloadingIsVisible = true;
+        private bool _txtDownloadingIsVisible = true;
 	    public bool TxtDownloadingIsVisibile 
 	    {
 			get { return _txtDownloadingIsVisible; }
