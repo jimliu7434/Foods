@@ -100,6 +100,10 @@
     <Compile Include="Class\Supplier.cs" />
     <Compile Include="Class\Dish.cs" />
     <Compile Include="Class\Material.cs" />
+    <Compile Include="Control\DishTextBoxControl\DishTextBoxControl.xaml.cs">
+      <DependentUpon>DishTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DishTextBoxControl\DishTextBoxControlViewModel.cs" />
     <Compile Include="Control\LoadingAnimation\Block.xaml.cs">
       <DependentUpon>Block.xaml</DependentUpon>
     </Compile>
@@ -121,6 +125,10 @@
     <Compile Include="Pages\PageBase.cs" />
     <Compile Include="PageViewModels\MaterialSubPageViewModel.cs" />
     <Compile Include="PageViewModels\PageViewModelBase.cs" />
+    <Page Include="Control\DishTextBoxControl\DishTextBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\LoadingAnimation\Block.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -195,6 +203,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Control\MaterialTextBoxControl\" />
+    <Folder Include="Control\SupplierTextBoxControl\" />
     <Folder Include="TempFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

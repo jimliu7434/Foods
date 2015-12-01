@@ -98,6 +98,17 @@
                     </ListView.ItemTemplate>
                 </ListView>-->
                 <Grid Grid.Row="1" Visibility="{Binding DishGridVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid>
+                        
+                    </DataGrid>
+                    <Grid Grid.Row="1">
+                        
+                    </Grid>
+                    
                 </Grid>
                 <!--<Grid Grid.Row="1" Visibility="{Binding SupplierGridVisibility}"></Grid>
                 <Grid Grid.Row="1" Visibility="{Binding MaterialGridVisibility}"></Grid>-->
