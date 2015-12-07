@@ -2,35 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using FoodsForm.Class;
 
 namespace FoodsForm
 {
-    public enum AttachFileType
-    {
-        Read,
-        Create,
-    }
 
     public partial class DailyMenu : Form
     {
-        private AttachFileType _nowFileType = AttachFileType.Create;
-        private AttachFileType NowFileType
-        {
-            get { return _nowFileType; }
-            set
-            {
-                if (value != _nowFileType)  //不同於前一狀態
-                {
-                    lbl_ReadNewFilePath.Text = "";
-                    _nowFileType = value;
-                }
-            }
-        } 
+
+        public IEnumerable<Dish> DishList { get; set; }
+        public IEnumerable<Supplier> SupplierList { get; set; }
+        public IEnumerable<Material> MaterialList { get; set; }
+        public IEnumerable<string> ProducerList { get; set; }
 
         public DailyMenu()
         {
@@ -41,52 +27,84 @@ namespace FoodsForm
 
         private void InitState()
         {
-            MaxOpenFilePart();
+           
+            GetDishList();
+            GetSupplierList();
+            GetMaterialList();
+            GetProducerList();
         }
 
+        private void GetDishList()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetSupplierList()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetMaterialList()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetProducerList()
+        {
+            throw new NotImplementedException();
+        }
 
         private void btn_OpenFileDialog_Click(object sender, EventArgs e)
         {
-            switch (NowFileType)
-            {
-                case AttachFileType.Create:
-                    folderBrowserDialog1.ShowDialog();
-                    lbl_ReadNewFilePath.Text = folderBrowserDialog1.SelectedPath;
-                    break;
-                case AttachFileType.Read:
-                    openFileDialog1.ShowDialog();
-                    lbl_ReadNewFilePath.Text = openFileDialog1.FileName;
-                    break;
-            }
+            openFileDialog1.ShowDialog();
+            lbl_ReadNewFilePath.Text = openFileDialog1.FileName;
         }
-
-        private void btn_MaxPnlReadNew_Click(object sender, EventArgs e)
-        {
-            MaxOpenFilePart();
-        }
-
-        private void btn_MinPnlReadNew_Click(object sender, EventArgs e)
-        {
-            MinOpenFilePart();
-        }
-
-        private void MaxOpenFilePart()
-        {
-            group_ReadNewFile.Visible = true;
-            btn_MinPnlReadNew.Visible = true;
-        }
-
-        private void MinOpenFilePart()
-        {
-            group_ReadNewFileMin.Visible = true;
-            btn_MaxPnlReadNew.Visible = true;
-        }
-
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-
+            //todo:讀檔
         }
 
+        private void btn_Export_Click(object sender, EventArgs e)
+        {
+            //todo:開新檔案or replace
+            openFileDialog2.ShowDialog();
+        }
+
+        private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+            //todo:匯出
+        }
+
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "date")
+            {
+                var r = this.dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                r = this.dataGridView1.RectangleToScreen(r);
+                this.dateTimePicker1.Location = this.RectangleToClient(r).Location;
+                this.dateTimePicker1.Size = r.Size;
+                this.dateTimePicker1.Text = this.dataGridView1.CurrentCell.Value.ToString();
+
+                dateTimePicker1.CloseUp += DateTimePicker_CloseUp;
+                dateTimePicker1.TextChanged += DateTimePicker_OnTextChange;
+
+                dateTimePicker1.Visible = true;
+            }
+            else
+            {
+                dateTimePicker1.Visible = false;
+            }
+        }
+
+        private void DateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            dateTimePicker1.Visible = false;
+        }
+
+        private void DateTimePicker_OnTextChange(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell.Value = dateTimePicker1.Text;
+        }
     }
 }
