@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Foods.Control
+namespace Foods.Controls
 {
     /// <summary>
     /// Interaction logic for Block.xaml

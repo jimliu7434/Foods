@@ -100,16 +100,18 @@
     <Compile Include="Class\Supplier.cs" />
     <Compile Include="Class\Dish.cs" />
     <Compile Include="Class\Material.cs" />
-    <Compile Include="Control\DishTextBoxControl\DishTextBoxControl.xaml.cs">
+    <Compile Include="ControlViewModels\BaseUserControlViewModel.cs" />
+    <Compile Include="Controls\DishTextBoxControl\DishTextBoxControl.xaml.cs">
       <DependentUpon>DishTextBoxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\DishTextBoxControl\DishTextBoxControlViewModel.cs" />
-    <Compile Include="Control\LoadingAnimation\Block.xaml.cs">
+    <Compile Include="ControlViewModels\DishTextBoxControlViewModel.cs" />
+    <Compile Include="Controls\LoadingAnimation\Block.xaml.cs">
       <DependentUpon>Block.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\LoadingAnimation\LoadingAnimation.xaml.cs">
+    <Compile Include="Controls\LoadingAnimation\LoadingAnimation.xaml.cs">
       <DependentUpon>LoadingAnimation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BaseUserControl.cs" />
     <Compile Include="Enum\WorkSheetEnum.cs" />
     <Compile Include="Pages\DishSubPage.xaml.cs">
       <DependentUpon>DishSubPage.xaml</DependentUpon>
@@ -125,15 +127,15 @@
     <Compile Include="Pages\PageBase.cs" />
     <Compile Include="PageViewModels\MaterialSubPageViewModel.cs" />
     <Compile Include="PageViewModels\PageViewModelBase.cs" />
-    <Page Include="Control\DishTextBoxControl\DishTextBoxControl.xaml">
+    <Page Include="Controls\DishTextBoxControl\DishTextBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\LoadingAnimation\Block.xaml">
+    <Page Include="Controls\LoadingAnimation\Block.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Control\LoadingAnimation\LoadingAnimation.xaml">
+    <Page Include="Controls\LoadingAnimation\LoadingAnimation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -203,8 +205,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Control\MaterialTextBoxControl\" />
-    <Folder Include="Control\SupplierTextBoxControl\" />
+    <Folder Include="Controls\DateSelectorControl\" />
+    <Folder Include="Controls\MaterialTextBoxControl\" />
+    <Folder Include="Controls\SupplierTextBoxControl\" />
     <Folder Include="TempFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
