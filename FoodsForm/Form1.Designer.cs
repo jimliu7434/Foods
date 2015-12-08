@@ -30,6 +30,7 @@
         {
             this.TabControl = new System.Windows.Forms.TabControl();
             this.Tab_Dish = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btn_Export = new System.Windows.Forms.Button();
             this.group_ReadNewFile = new System.Windows.Forms.GroupBox();
@@ -43,21 +44,6 @@
             this.Tab_Material = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dish_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dish_Name = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Material_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Material_Name = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unit = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Producer = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Locate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Supplier_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Supplier_Name = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Certification = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.TabControl.SuspendLayout();
             this.Tab_Dish.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -93,6 +79,16 @@
             this.Tab_Dish.TabIndex = 0;
             this.Tab_Dish.Text = "每日菜單";
             this.Tab_Dish.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(16, 468);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(128, 29);
+            this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePicker1.Visible = false;
             // 
             // panel3
             // 
@@ -153,21 +149,6 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Date,
-            this.Dish_Key,
-            this.Dish_Name,
-            this.Material_Key,
-            this.Material_Name,
-            this.Weight,
-            this.Unit,
-            this.Producer,
-            this.Locate,
-            this.Supplier_Key,
-            this.Supplier_Name,
-            this.Certification,
-            this.StartDate,
-            this.EndDate});
             this.dataGridView1.Location = new System.Drawing.Point(16, 132);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
@@ -182,7 +163,7 @@
             this.Tab_Supplier.Location = new System.Drawing.Point(4, 29);
             this.Tab_Supplier.Name = "Tab_Supplier";
             this.Tab_Supplier.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Supplier.Size = new System.Drawing.Size(806, 780);
+            this.Tab_Supplier.Size = new System.Drawing.Size(1314, 496);
             this.Tab_Supplier.TabIndex = 1;
             this.Tab_Supplier.Text = "供應商設定";
             this.Tab_Supplier.UseVisualStyleBackColor = true;
@@ -210,7 +191,7 @@
             this.Tab_Material.Location = new System.Drawing.Point(4, 29);
             this.Tab_Material.Name = "Tab_Material";
             this.Tab_Material.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Material.Size = new System.Drawing.Size(806, 780);
+            this.Tab_Material.Size = new System.Drawing.Size(1314, 496);
             this.Tab_Material.TabIndex = 2;
             this.Tab_Material.Text = "食材設定";
             this.Tab_Material.UseVisualStyleBackColor = true;
@@ -224,123 +205,6 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "供餐日期";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // Dish_Key
-            // 
-            this.Dish_Key.HeaderText = "菜色編號";
-            this.Dish_Key.Name = "Dish_Key";
-            this.Dish_Key.ReadOnly = true;
-            this.Dish_Key.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Dish_Key.Width = 80;
-            // 
-            // Dish_Name
-            // 
-            this.Dish_Name.HeaderText = "菜色名稱";
-            this.Dish_Name.Name = "Dish_Name";
-            this.Dish_Name.ReadOnly = true;
-            this.Dish_Name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Material_Key
-            // 
-            this.Material_Key.HeaderText = "食材編號";
-            this.Material_Key.Name = "Material_Key";
-            this.Material_Key.ReadOnly = true;
-            this.Material_Key.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Material_Key.Width = 80;
-            // 
-            // Material_Name
-            // 
-            this.Material_Name.HeaderText = "食材名稱";
-            this.Material_Name.Name = "Material_Name";
-            this.Material_Name.ReadOnly = true;
-            this.Material_Name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Weight
-            // 
-            this.Weight.FillWeight = 50F;
-            this.Weight.HeaderText = "重量";
-            this.Weight.Name = "Weight";
-            this.Weight.ReadOnly = true;
-            this.Weight.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Weight.Width = 50;
-            // 
-            // Unit
-            // 
-            this.Unit.HeaderText = "單位";
-            this.Unit.Items.AddRange(new object[] {
-            "公斤",
-            "公克",
-            "台斤"});
-            this.Unit.Name = "Unit";
-            this.Unit.ReadOnly = true;
-            this.Unit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Unit.Width = 50;
-            // 
-            // Producer
-            // 
-            this.Producer.HeaderText = "品牌";
-            this.Producer.Name = "Producer";
-            this.Producer.ReadOnly = true;
-            this.Producer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Locate
-            // 
-            this.Locate.HeaderText = "產地";
-            this.Locate.Name = "Locate";
-            this.Locate.ReadOnly = true;
-            this.Locate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Locate.Width = 80;
-            // 
-            // Supplier_Key
-            // 
-            this.Supplier_Key.HeaderText = "供應商統編";
-            this.Supplier_Key.Name = "Supplier_Key";
-            this.Supplier_Key.ReadOnly = true;
-            this.Supplier_Key.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Supplier_Name
-            // 
-            this.Supplier_Name.HeaderText = "供應商名稱";
-            this.Supplier_Name.Name = "Supplier_Name";
-            this.Supplier_Name.ReadOnly = true;
-            this.Supplier_Name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Certification
-            // 
-            this.Certification.HeaderText = "認證標章";
-            this.Certification.Name = "Certification";
-            this.Certification.ReadOnly = true;
-            this.Certification.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StartDate
-            // 
-            this.StartDate.HeaderText = "進貨日期";
-            this.StartDate.Name = "StartDate";
-            this.StartDate.ReadOnly = true;
-            this.StartDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // EndDate
-            // 
-            this.EndDate.HeaderText = "有效期限";
-            this.EndDate.Name = "EndDate";
-            this.EndDate.ReadOnly = true;
-            this.EndDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(16, 468);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(128, 29);
-            this.dateTimePicker1.TabIndex = 6;
-            this.dateTimePicker1.Visible = false;
             // 
             // DailyMenu
             // 
@@ -380,20 +244,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btn_Export;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dish_Key;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Dish_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Material_Key;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Material_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Unit;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Producer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Locate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Supplier_Key;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Supplier_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Certification;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

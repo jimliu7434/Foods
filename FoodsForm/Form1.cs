@@ -18,6 +18,8 @@ namespace FoodsForm
         public IEnumerable<Material> MaterialList { get; set; }
         public IEnumerable<string> ProducerList { get; set; }
 
+        public DataTable SourceTable { get; set; }= new DataTable();
+
         public DailyMenu()
         {
             InitializeComponent();
@@ -27,11 +29,11 @@ namespace FoodsForm
 
         private void InitState()
         {
-           
-            GetDishList();
-            GetSupplierList();
-            GetMaterialList();
-            GetProducerList();
+            lbl_ReadNewFilePath.Text = "";
+            //GetDishList();
+            //GetSupplierList();
+            //GetMaterialList();
+            //GetProducerList();
         }
 
         private void GetDishList()
@@ -63,6 +65,20 @@ namespace FoodsForm
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             //todo:讀檔
+            var file = openFileDialog1.FileName;
+            lbl_ReadNewFilePath.Text = file;
+
+            try
+            {
+                SourceTable = Excel.ExcelToDataTable(file);
+                dataGridView1.DataSource = SourceTable;
+            }
+            catch (Exception)
+            {
+                lbl_ReadNewFilePath.Text = "";
+                MessageBox.Show("檔案開啟失敗，請重新選擇 xls 或 xlsx 檔!");
+            }
+            
         }
 
         private void btn_Export_Click(object sender, EventArgs e)
