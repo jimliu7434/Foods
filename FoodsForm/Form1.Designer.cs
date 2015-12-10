@@ -44,6 +44,20 @@
             this.Tab_Material = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.供餐日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.菜色編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.菜色名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.食材編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.食材名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.單位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.品牌製造商 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.產地製造商所在地 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.供應商統編 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.供應商名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.認證標章 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.進貨製造日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.有效期限 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl.SuspendLayout();
             this.Tab_Dish.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -148,11 +162,27 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.供餐日期,
+            this.菜色編號,
+            this.菜色名稱,
+            this.食材編號,
+            this.食材名稱,
+            this.重量,
+            this.單位,
+            this.品牌製造商,
+            this.產地製造商所在地,
+            this.供應商統編,
+            this.供應商名稱,
+            this.認證標章,
+            this.進貨製造日期,
+            this.有效期限});
             this.dataGridView1.Location = new System.Drawing.Point(16, 132);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(1284, 250);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
@@ -206,6 +236,104 @@
             this.openFileDialog2.FileName = "openFileDialog2";
             this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
             // 
+            // 供餐日期
+            // 
+            this.供餐日期.DataPropertyName = "供餐日期";
+            this.供餐日期.HeaderText = "供餐日期";
+            this.供餐日期.Name = "供餐日期";
+            this.供餐日期.Width = 76;
+            // 
+            // 菜色編號
+            // 
+            this.菜色編號.DataPropertyName = "菜色編號\r\n";
+            this.菜色編號.HeaderText = "菜色編號";
+            this.菜色編號.Name = "菜色編號";
+            this.菜色編號.Width = 76;
+            // 
+            // 菜色名稱
+            // 
+            this.菜色名稱.DataPropertyName = "菜色名稱";
+            this.菜色名稱.HeaderText = "菜色名稱";
+            this.菜色名稱.Name = "菜色名稱";
+            this.菜色名稱.Width = 76;
+            // 
+            // 食材編號
+            // 
+            this.食材編號.DataPropertyName = "食材編號";
+            this.食材編號.HeaderText = "食材編號";
+            this.食材編號.Name = "食材編號";
+            this.食材編號.Width = 76;
+            // 
+            // 食材名稱
+            // 
+            this.食材名稱.DataPropertyName = "食材名稱";
+            this.食材名稱.HeaderText = "食材名稱";
+            this.食材名稱.Name = "食材名稱";
+            this.食材名稱.Width = 76;
+            // 
+            // 重量
+            // 
+            this.重量.DataPropertyName = "重量";
+            this.重量.HeaderText = "重量";
+            this.重量.Name = "重量";
+            this.重量.Width = 61;
+            // 
+            // 單位
+            // 
+            this.單位.DataPropertyName = "單位";
+            this.單位.HeaderText = "單位";
+            this.單位.Name = "單位";
+            this.單位.Width = 61;
+            // 
+            // 品牌製造商
+            // 
+            this.品牌製造商.DataPropertyName = "品牌製造商";
+            this.品牌製造商.HeaderText = "品牌(製造商)";
+            this.品牌製造商.Name = "品牌製造商";
+            this.品牌製造商.Width = 80;
+            // 
+            // 產地製造商所在地
+            // 
+            this.產地製造商所在地.DataPropertyName = "產地製造商所在地";
+            this.產地製造商所在地.HeaderText = "產地(製造商所在地)";
+            this.產地製造商所在地.Name = "產地製造商所在地";
+            this.產地製造商所在地.Width = 95;
+            // 
+            // 供應商統編
+            // 
+            this.供應商統編.DataPropertyName = "供應商統編";
+            this.供應商統編.HeaderText = "供應商統編";
+            this.供應商統編.Name = "供應商統編";
+            this.供應商統編.Width = 76;
+            // 
+            // 供應商名稱
+            // 
+            this.供應商名稱.DataPropertyName = "供應商名稱";
+            this.供應商名稱.HeaderText = "供應商名稱";
+            this.供應商名稱.Name = "供應商名稱";
+            this.供應商名稱.Width = 76;
+            // 
+            // 認證標章
+            // 
+            this.認證標章.DataPropertyName = "認證標章";
+            this.認證標章.HeaderText = "認證標章";
+            this.認證標章.Name = "認證標章";
+            this.認證標章.Width = 76;
+            // 
+            // 進貨製造日期
+            // 
+            this.進貨製造日期.DataPropertyName = "進貨製造日期";
+            this.進貨製造日期.HeaderText = "進貨(製造)日期";
+            this.進貨製造日期.Name = "進貨製造日期";
+            this.進貨製造日期.Width = 80;
+            // 
+            // 有效期限
+            // 
+            this.有效期限.DataPropertyName = "有效期限";
+            this.有效期限.HeaderText = "有效期限";
+            this.有效期限.Name = "有效期限";
+            this.有效期限.Width = 76;
+            // 
             // DailyMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -245,6 +373,20 @@
         private System.Windows.Forms.Button btn_Export;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 供餐日期;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 菜色編號;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 菜色名稱;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 食材編號;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 食材名稱;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 單位;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 品牌製造商;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 產地製造商所在地;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 供應商統編;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 供應商名稱;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 認證標章;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 進貨製造日期;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 有效期限;
     }
 }
 

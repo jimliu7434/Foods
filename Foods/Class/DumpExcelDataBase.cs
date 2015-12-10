@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OfficeOpenXml;
 using System.IO;
-using System.Reflection;
 using LinqToExcel;
-using Remotion.Data.Linq.Collections;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using Foods.Enum;
-using LinqToExcel.Query;
 using System.Net;
 
 namespace Foods.Class

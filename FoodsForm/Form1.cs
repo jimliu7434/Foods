@@ -13,10 +13,10 @@ namespace FoodsForm
     public partial class DailyMenu : Form
     {
 
-        public IEnumerable<Dish> DishList { get; set; }
-        public IEnumerable<Supplier> SupplierList { get; set; }
-        public IEnumerable<Material> MaterialList { get; set; }
-        public IEnumerable<string> ProducerList { get; set; }
+        //public IEnumerable<Dish> DishList { get; set; }
+        //public IEnumerable<Supplier> SupplierList { get; set; }
+        //public IEnumerable<Material> MaterialList { get; set; }
+        //public IEnumerable<string> ProducerList { get; set; }
 
         public DataTable SourceTable { get; set; }= new DataTable();
 
@@ -25,36 +25,36 @@ namespace FoodsForm
             InitializeComponent();
 
             InitState();
+            
         }
 
-        private void InitState()
+        private async void InitState()
+        {
+            InitUI();
+
+            // todo: ProcessBar Start
+            await Excel.Init();
+
+            ExcelDataBase.DumpDish();
+            ExcelDataBase.DumpSupplier();
+            ExcelDataBase.DumpMaterial();
+            //GetProducerList();
+
+            //todo: ProcessBar Close
+        }
+
+        
+        private void InitUI()
         {
             lbl_ReadNewFilePath.Text = "";
-            //GetDishList();
-            //GetSupplierList();
-            //GetMaterialList();
-            //GetProducerList();
+            dataGridView1.AutoGenerateColumns = false;
+
         }
 
-        private void GetDishList()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void GetSupplierList()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void GetMaterialList()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void GetProducerList()
-        {
-            throw new NotImplementedException();
-        }
+        //private void GetProducerList()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         private void btn_OpenFileDialog_Click(object sender, EventArgs e)
         {
@@ -64,7 +64,7 @@ namespace FoodsForm
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            //todo:讀檔
+            //讀檔
             var file = openFileDialog1.FileName;
             lbl_ReadNewFilePath.Text = file;
 
