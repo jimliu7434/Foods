@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FoodsForm.Class;
 
@@ -13,34 +16,27 @@ namespace FoodsForm
     public partial class DailyMenu : Form
     {
 
-        //public IEnumerable<Dish> DishList { get; set; }
-        //public IEnumerable<Supplier> SupplierList { get; set; }
-        //public IEnumerable<Material> MaterialList { get; set; }
-        //public IEnumerable<string> ProducerList { get; set; }
-
         public DataTable SourceTable { get; set; }= new DataTable();
 
         public DailyMenu()
         {
             InitializeComponent();
-
-            InitState();
-            
         }
+
+        private void DailyMenu_Load(object sender, EventArgs e)
+        {
+            InitState();
+        }
+
 
         private async void InitState()
         {
+            ShowMask();
+
             InitUI();
-
-            // todo: ProcessBar Start
-            await Excel.Init();
-
-            ExcelDataBase.DumpDish();
-            ExcelDataBase.DumpSupplier();
-            ExcelDataBase.DumpMaterial();
-            //GetProducerList();
-
-            //todo: ProcessBar Close
+            await InitData();
+            
+            CloseMask();
         }
 
         
@@ -51,6 +47,16 @@ namespace FoodsForm
 
         }
 
+        private async Task InitData()
+        {
+            await Excel.Init();
+
+            ExcelDataBase.DumpDish();
+            ExcelDataBase.DumpSupplier();
+            ExcelDataBase.DumpMaterial();
+            //GetProducerList();
+
+        }
         //private void GetProducerList()
         //{
         //    throw new NotImplementedException();
@@ -122,5 +128,30 @@ namespace FoodsForm
         {
             dataGridView1.CurrentCell.Value = dateTimePicker1.Text;
         }
+
+        private void ShowMask()
+        {
+            var viewStartPoint = new Point(0, 0);
+            var viewWidth = this.Width;
+            var viewHeight = this.Height;
+
+            maskPictureBox.Location = viewStartPoint;
+            maskPictureBox.Width = viewWidth;
+            maskPictureBox.Height = viewHeight;
+            maskPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            maskPictureBox.ImageLocation = Directory.GetCurrentDirectory() + @"\Image\31.gif";
+            
+            maskPictureBox.Load();
+            maskPictureBox.BringToFront();
+            maskPictureBox.Visible = true;
+        }
+
+        private void CloseMask()
+        {
+            maskPictureBox.SendToBack();
+            maskPictureBox = new PictureBox {Visible = false};
+        }
+
+
     }
 }

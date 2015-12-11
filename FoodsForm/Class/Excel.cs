@@ -32,7 +32,7 @@ namespace FoodsForm.Class
         public static string LocalSavePath = Path.Combine(ApplicationPath, "TempFiles\\");
         public static string FileName = "main_base.xls";
         public static string LocalFullFilePath = Path.Combine(LocalSavePath, FileName);
-        
+        public static string DownloadUrl = "http://foodtracertaipei.health.gov.tw/caterer/export_lunch_daily_base.aspx";
 
         private static HSSFWorkbook _workBook;
 
@@ -77,7 +77,7 @@ namespace FoodsForm.Class
                     {
                         ExcelFileDownloadCompleted?.Invoke(sender, args);
                     };
-                    await client.DownloadFileTaskAsync(new Uri(LocalSavePath, UriKind.Relative), FileName);
+                    await client.DownloadFileTaskAsync(new Uri(DownloadUrl, UriKind.Absolute), LocalFullFilePath);
                 }
                 //catch (WebException webException)
                 //{

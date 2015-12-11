@@ -38,12 +38,6 @@
             this.btn_OpenFileDialog = new System.Windows.Forms.Button();
             this.lbl_ReadNewFilePath = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Tab_Supplier = new System.Windows.Forms.TabPage();
-            this.group_DisplaySupplier = new System.Windows.Forms.GroupBox();
-            this.ckb_DisplaySupplier = new System.Windows.Forms.CheckedListBox();
-            this.Tab_Material = new System.Windows.Forms.TabPage();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.供餐日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.菜色編號 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.菜色名稱 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +52,13 @@
             this.認證標章 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.進貨製造日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.有效期限 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tab_Supplier = new System.Windows.Forms.TabPage();
+            this.group_DisplaySupplier = new System.Windows.Forms.GroupBox();
+            this.ckb_DisplaySupplier = new System.Windows.Forms.CheckedListBox();
+            this.Tab_Material = new System.Windows.Forms.TabPage();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.maskPictureBox = new System.Windows.Forms.PictureBox();
             this.TabControl.SuspendLayout();
             this.Tab_Dish.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Tab_Supplier.SuspendLayout();
             this.group_DisplaySupplier.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maskPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -187,55 +189,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             // 
-            // Tab_Supplier
-            // 
-            this.Tab_Supplier.Controls.Add(this.group_DisplaySupplier);
-            this.Tab_Supplier.Location = new System.Drawing.Point(4, 29);
-            this.Tab_Supplier.Name = "Tab_Supplier";
-            this.Tab_Supplier.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Supplier.Size = new System.Drawing.Size(1314, 496);
-            this.Tab_Supplier.TabIndex = 1;
-            this.Tab_Supplier.Text = "供應商設定";
-            this.Tab_Supplier.UseVisualStyleBackColor = true;
-            // 
-            // group_DisplaySupplier
-            // 
-            this.group_DisplaySupplier.Controls.Add(this.ckb_DisplaySupplier);
-            this.group_DisplaySupplier.Location = new System.Drawing.Point(20, 20);
-            this.group_DisplaySupplier.Name = "group_DisplaySupplier";
-            this.group_DisplaySupplier.Size = new System.Drawing.Size(698, 416);
-            this.group_DisplaySupplier.TabIndex = 0;
-            this.group_DisplaySupplier.TabStop = false;
-            this.group_DisplaySupplier.Text = "供應商顯示";
-            // 
-            // ckb_DisplaySupplier
-            // 
-            this.ckb_DisplaySupplier.FormattingEnabled = true;
-            this.ckb_DisplaySupplier.Location = new System.Drawing.Point(24, 29);
-            this.ckb_DisplaySupplier.Name = "ckb_DisplaySupplier";
-            this.ckb_DisplaySupplier.Size = new System.Drawing.Size(650, 364);
-            this.ckb_DisplaySupplier.TabIndex = 0;
-            // 
-            // Tab_Material
-            // 
-            this.Tab_Material.Location = new System.Drawing.Point(4, 29);
-            this.Tab_Material.Name = "Tab_Material";
-            this.Tab_Material.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Material.Size = new System.Drawing.Size(1314, 496);
-            this.Tab_Material.TabIndex = 2;
-            this.Tab_Material.Text = "食材設定";
-            this.Tab_Material.UseVisualStyleBackColor = true;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // openFileDialog2
-            // 
-            this.openFileDialog2.FileName = "openFileDialog2";
-            this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
-            // 
             // 供餐日期
             // 
             this.供餐日期.DataPropertyName = "供餐日期";
@@ -290,28 +243,28 @@
             this.品牌製造商.DataPropertyName = "品牌製造商";
             this.品牌製造商.HeaderText = "品牌(製造商)";
             this.品牌製造商.Name = "品牌製造商";
-            this.品牌製造商.Width = 80;
+            this.品牌製造商.Width = 95;
             // 
             // 產地製造商所在地
             // 
             this.產地製造商所在地.DataPropertyName = "產地製造商所在地";
             this.產地製造商所在地.HeaderText = "產地(製造商所在地)";
             this.產地製造商所在地.Name = "產地製造商所在地";
-            this.產地製造商所在地.Width = 95;
+            this.產地製造商所在地.Width = 109;
             // 
             // 供應商統編
             // 
             this.供應商統編.DataPropertyName = "供應商統編";
             this.供應商統編.HeaderText = "供應商統編";
             this.供應商統編.Name = "供應商統編";
-            this.供應商統編.Width = 76;
+            this.供應商統編.Width = 90;
             // 
             // 供應商名稱
             // 
             this.供應商名稱.DataPropertyName = "供應商名稱";
             this.供應商名稱.HeaderText = "供應商名稱";
             this.供應商名稱.Name = "供應商名稱";
-            this.供應商名稱.Width = 76;
+            this.供應商名稱.Width = 90;
             // 
             // 認證標章
             // 
@@ -325,7 +278,7 @@
             this.進貨製造日期.DataPropertyName = "進貨製造日期";
             this.進貨製造日期.HeaderText = "進貨(製造)日期";
             this.進貨製造日期.Name = "進貨製造日期";
-            this.進貨製造日期.Width = 80;
+            this.進貨製造日期.Width = 99;
             // 
             // 有效期限
             // 
@@ -334,14 +287,74 @@
             this.有效期限.Name = "有效期限";
             this.有效期限.Width = 76;
             // 
+            // Tab_Supplier
+            // 
+            this.Tab_Supplier.Controls.Add(this.group_DisplaySupplier);
+            this.Tab_Supplier.Location = new System.Drawing.Point(4, 29);
+            this.Tab_Supplier.Name = "Tab_Supplier";
+            this.Tab_Supplier.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab_Supplier.Size = new System.Drawing.Size(1314, 496);
+            this.Tab_Supplier.TabIndex = 1;
+            this.Tab_Supplier.Text = "供應商設定";
+            this.Tab_Supplier.UseVisualStyleBackColor = true;
+            // 
+            // group_DisplaySupplier
+            // 
+            this.group_DisplaySupplier.Controls.Add(this.ckb_DisplaySupplier);
+            this.group_DisplaySupplier.Location = new System.Drawing.Point(20, 20);
+            this.group_DisplaySupplier.Name = "group_DisplaySupplier";
+            this.group_DisplaySupplier.Size = new System.Drawing.Size(698, 416);
+            this.group_DisplaySupplier.TabIndex = 0;
+            this.group_DisplaySupplier.TabStop = false;
+            this.group_DisplaySupplier.Text = "供應商顯示";
+            // 
+            // ckb_DisplaySupplier
+            // 
+            this.ckb_DisplaySupplier.FormattingEnabled = true;
+            this.ckb_DisplaySupplier.Location = new System.Drawing.Point(24, 29);
+            this.ckb_DisplaySupplier.Name = "ckb_DisplaySupplier";
+            this.ckb_DisplaySupplier.Size = new System.Drawing.Size(650, 364);
+            this.ckb_DisplaySupplier.TabIndex = 0;
+            // 
+            // Tab_Material
+            // 
+            this.Tab_Material.Location = new System.Drawing.Point(4, 29);
+            this.Tab_Material.Name = "Tab_Material";
+            this.Tab_Material.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab_Material.Size = new System.Drawing.Size(1314, 496);
+            this.Tab_Material.TabIndex = 2;
+            this.Tab_Material.Text = "食材設定";
+            this.Tab_Material.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
+            // 
+            // maskPictureBox
+            // 
+            this.maskPictureBox.Location = new System.Drawing.Point(998, -15);
+            this.maskPictureBox.Name = "maskPictureBox";
+            this.maskPictureBox.Size = new System.Drawing.Size(100, 50);
+            this.maskPictureBox.TabIndex = 7;
+            this.maskPictureBox.TabStop = false;
+            this.maskPictureBox.Visible = false;
+            // 
             // DailyMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1332, 526);
+            this.Controls.Add(this.maskPictureBox);
             this.Controls.Add(this.TabControl);
             this.Name = "DailyMenu";
             this.Text = "每日菜單";
+            this.Load += new System.EventHandler(this.DailyMenu_Load);
             this.TabControl.ResumeLayout(false);
             this.Tab_Dish.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -351,6 +364,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Tab_Supplier.ResumeLayout(false);
             this.group_DisplaySupplier.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.maskPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,6 +401,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 認證標章;
         private System.Windows.Forms.DataGridViewTextBoxColumn 進貨製造日期;
         private System.Windows.Forms.DataGridViewTextBoxColumn 有效期限;
+        private System.Windows.Forms.PictureBox maskPictureBox;
     }
 }
 
