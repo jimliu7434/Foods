@@ -100,29 +100,130 @@ namespace FoodsForm
 
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dataGridView1.Columns[e.ColumnIndex].Name == "date")
-            {
-                var r = this.dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
-                r = this.dataGridView1.RectangleToScreen(r);
-                this.dateTimePicker1.Location = this.RectangleToClient(r).Location;
-                this.dateTimePicker1.Size = r.Size;
-                this.dateTimePicker1.Text = this.dataGridView1.CurrentCell.Value.ToString();
+	        dateTimePicker1.Visible = false;
+	        textBoxAutoComplete.Visible = false;
 
-                dateTimePicker1.CloseUp += DateTimePicker_CloseUp;
-                dateTimePicker1.TextChanged += DateTimePicker_OnTextChange;
+			var r = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+			r = dataGridView1.RectangleToScreen(r);
 
-                dateTimePicker1.Visible = true;
-            }
-            else
-            {
-                dateTimePicker1.Visible = false;
-            }
+			textBoxAutoComplete.TextChanged += TextBoxAutoCompleteOnTextChanged;
+			textBoxAutoComplete.LostFocus += TextBoxAutoCompleteOnLostFocus;
+
+			dateTimePicker1.CloseUp += DateTimePicker_CloseUp;
+			dateTimePicker1.TextChanged += DateTimePicker_OnTextChange;
+
+			textBoxAutoComplete.AutoCompleteCustomSource.Clear();
+
+			var columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+			if (columnName == CellControlType.菜色編號)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(ExcelDataBase.DishDataBase.Select(p => p.Key).ToArray());
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			else if (columnName == CellControlType.菜色名稱)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(ExcelDataBase.DishDataBase.Select(p => p.Value).ToArray());
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			else if (columnName == CellControlType.食材編號)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(ExcelDataBase.MaterialDataBase.Select(p => p.Key).ToArray());
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			else if (columnName == CellControlType.食材名稱)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(ExcelDataBase.MaterialDataBase.Select(p => p.Value).ToArray());
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			else if (columnName == CellControlType.重量)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(new string[] { "公斤", "台斤", "公克" });
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			//else if (columnName == CellControlType.品牌製造商)
+			//{
+			//	list = new string[] { "公斤", "台斤", "公克" };
+			//}
+			//else if (columnName == CellControlType.產地製造商所在地)
+			//{
+			//	list = new string[] { "公斤", "台斤", "公克" };
+			//}
+			else if (columnName == CellControlType.供應商統編)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(ExcelDataBase.SupplierDataBase.Select(p => p.Key).ToArray());
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			else if (columnName == CellControlType.供應商名稱)
+			{
+				textBoxAutoComplete.AutoCompleteCustomSource.AddRange(ExcelDataBase.SupplierDataBase.Select(p => p.Value).ToArray());
+				textBoxAutoComplete.Location = RectangleToClient(r).Location;
+				textBoxAutoComplete.Size = r.Size;
+				textBoxAutoComplete.Text = dataGridView1.CurrentCell.Value?.ToString();
+				textBoxAutoComplete.Visible = true;
+				textBoxAutoComplete.BringToFront();
+			}
+			else if (columnName == CellControlType.供餐日期 ||
+					 columnName == CellControlType.進貨製造日期 || 
+					 columnName == CellControlType.有效期限)
+			{
+				dateTimePicker1.Location = RectangleToClient(r).Location;
+				dateTimePicker1.Size = r.Size;
+				dateTimePicker1.Text = dataGridView1.CurrentCell.Value?.ToString();
+				dateTimePicker1.Visible = true;
+				dateTimePicker1.BringToFront();
+			}
+
+
+			
         }
 
-        private void DateTimePicker_CloseUp(object sender, EventArgs e)
+	    private void TextBoxAutoCompleteOnLostFocus(object sender, EventArgs eventArgs)
+	    {
+			textBoxAutoComplete.TextChanged -= TextBoxAutoCompleteOnTextChanged;
+			textBoxAutoComplete.LostFocus -= TextBoxAutoCompleteOnLostFocus;
+
+			textBoxAutoComplete.Visible = false;
+			textBoxAutoComplete.SendToBack();
+	    }
+
+	    private void TextBoxAutoCompleteOnTextChanged(object sender, EventArgs eventArgs)
+	    {
+			dataGridView1.CurrentCell.Value = textBoxAutoComplete.Text;
+		}
+
+	    private void DateTimePicker_CloseUp(object sender, EventArgs e)
         {
-            dateTimePicker1.Visible = false;
-        }
+			dateTimePicker1.CloseUp -= DateTimePicker_CloseUp;
+			dateTimePicker1.TextChanged -= DateTimePicker_OnTextChange;
+
+			dateTimePicker1.Visible = false;
+			dateTimePicker1.SendToBack();
+		}
 
         private void DateTimePicker_OnTextChange(object sender, EventArgs e)
         {
@@ -153,5 +254,18 @@ namespace FoodsForm
         }
 
 
-    }
+		//private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
+		//{
+		//	textBoxAutoComplete.TextChanged -= TextBoxAutoCompleteOnTextChanged;
+		//	textBoxAutoComplete.LostFocus -= TextBoxAutoCompleteOnLostFocus;
+
+		//	dateTimePicker1.CloseUp -= DateTimePicker_CloseUp;
+		//	dateTimePicker1.TextChanged -= DateTimePicker_OnTextChange;
+
+		//	dateTimePicker1.Visible = false;
+		//	textBoxAutoComplete.Visible = false;
+		//	dateTimePicker1.SendToBack();
+		//	textBoxAutoComplete.SendToBack();
+		//}
+	}
 }

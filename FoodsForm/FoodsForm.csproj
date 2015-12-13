@@ -66,10 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\CalendarCell.cs" />
     <Compile Include="Class\Dish.cs" />
     <Compile Include="Class\Excel.cs" />
     <Compile Include="Class\ExcelDataBase.cs" />
     <Compile Include="Class\Material.cs" />
+    <Compile Include="Class\SetGridCellStyle.cs" />
     <Compile Include="Class\Supplier.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
