@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
+    <Folder Include="Save\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\31.gif">

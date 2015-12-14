@@ -271,9 +271,106 @@ namespace FoodsForm.Class
             return rtnString;
         }
 
-        public static HSSFWorkbook DataTableToExcel(DataTable dt)
+        public static string DataGridViewToExcel(DataGridView dataGridView1, string fileName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //記憶體中創建一個空的Excel檔
+                var workbook = new HSSFWorkbook();
+
+                //設置字體
+                var font = workbook.CreateFont();
+                //字體名稱
+                font.FontName = "新細明體";
+                //設置字體大小
+                font.FontHeightInPoints = 12;
+                //設置列的樣式
+                var style1 = workbook.CreateCellStyle();
+                //設置字體顯示樣式
+                style1.SetFont(font);
+
+                //在Excel檔上通過對HSSFSheet創建一個工作表
+                var sheet = workbook.CreateSheet("食材表主要資料登錄");
+
+                //根據 columns 建立第 0 列
+                //給工作表上添加一行
+                var row1 = sheet.CreateRow(0);
+                var indexi = 0;
+                foreach (var dataGridViewColumn in dataGridView1.Columns)
+                {
+                    var column = dataGridViewColumn as DataGridViewColumn;
+
+                    var cell1 = row1.CreateCell(indexi, CellType.String);
+                    cell1.CellStyle = style1;
+                    //設置該列的值
+                    cell1.SetCellValue(column.HeaderText);
+
+                    indexi++;
+                }
+
+
+                //遍歷dataGridView中的所有列，然後將列添加到Excel工作表中
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    
+                    var row = sheet.CreateRow(i);
+                    for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                    {
+                        if (dataGridView1.Columns[j].HeaderText == CellControlType.重量)
+                        {
+                            var value = dataGridView1.Rows[i].Cells[j].Value == null ? "" : dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            double weight = 0;
+                            double.TryParse(value, out weight);
+
+                            var cell0 = row.CreateCell(j, CellType.Numeric);
+                            cell0.CellStyle = style1;
+                            cell0.SetCellValue(weight);
+                        }
+                        else
+                        {
+                            var value = dataGridView1.Rows[i].Cells[j].Value == null ? "" : dataGridView1.Rows[i].Cells[j].Value.ToString();
+
+                            var cell = row.CreateCell(j, CellType.String);
+                            cell.CellStyle = style1;
+                            cell.SetCellValue(value);
+                        }
+                    }
+
+
+                    ////供餐日期
+                    //var row = sheet.CreateRow(i);
+                    //var cell = row.CreateCell(0, CellType.String);
+                    //cell.CellStyle = style1;
+                    //cell.SetCellValue(dataGridView1.Rows[i].Cells[0].Value.ToString());
+
+
+                    //cell = row.CreateCell(1, CellType.String);
+                    //cell.CellStyle = style1;
+                    //cell.SetCellValue(dataGridView1.Rows[i].Cells[1].Value.ToString());
+
+
+                    //cell = row.CreateCell(2, CellType.String);
+                    //cell.CellStyle = style1;
+                    //cell.SetCellValue(dataGridView1.Rows[i - 1].Cells[2].Value.ToString());
+
+
+                    //cell = row.CreateCell(3, CellType.String);
+                    //cell.CellStyle = style1;
+                    //cell.SetCellValue(dataGridView1.Rows[i - 1].Cells[3].Value.ToString());
+                }
+
+                using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+                {
+                    //將內容寫入到硬碟中
+                    workbook.Write(fs);
+                }
+
+                return "0";
+            }
+            catch (Exception ex)
+            {
+                return "-1:" + ex.Message;
+            }
         }
 
     }
